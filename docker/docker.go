@@ -32,7 +32,8 @@ func main() {
 	pidfile := flag.String("p", "/var/run/docker.pid", "File containing process PID")
 	flRoot := flag.String("g", "/var/lib/docker", "Path to use as the root of the docker runtime.")
 	flEnableCors := flag.Bool("api-enable-cors", false, "Enable CORS requests in the remote api.")
-	flDns := flag.String("dns", "", "Set custom dns servers")
+	var flDns utils.ListOpts
+	flag.Var(&flDns, "dns", "Set custom dns servers")
 	flHosts := utils.ListOpts{fmt.Sprintf("unix://%s", docker.DEFAULTUNIXSOCKET)}
 	flag.Var(&flHosts, "H", "tcp://host:port to bind/connect to or unix://path/to/socket to use")
 	flEnableIptables := flag.Bool("iptables", true, "Disable iptables within docker")
@@ -77,7 +78,7 @@ func main() {
 		job.Setenv("Root", *flRoot)
 		job.SetenvBool("AutoRestart", *flAutoRestart)
 		job.SetenvBool("EnableCors", *flEnableCors)
-		job.Setenv("Dns", *flDns)
+		job.SetenvList("Dns", *flDns)
 		job.SetenvBool("EnableIptables", *flEnableIptables)
 		job.Setenv("BridgeIface", *bridgeName)
 		job.Setenv("DefaultIp", *flDefaultIp)
