@@ -74,7 +74,7 @@ func main() {
 		job.Setenv("Root", *flRoot)
 		job.SetenvBool("AutoRestart", *flAutoRestart)
 		job.SetenvBool("EnableCors", *flEnableCors)
-		job.SetenvList("Dns", flDns)
+		job.SetenvList("Dns", flDns.GetAll())
 		job.SetenvBool("EnableIptables", *flEnableIptables)
 		job.Setenv("BridgeIface", *bridgeName)
 		job.Setenv("DefaultIp", *flDefaultIp)
