@@ -142,5 +142,5 @@ func ValidateIp4Address(val string) (string, error) {
 	if len(ns) > 0 {
 		return string(ns[1]), nil
 	}
-	return nil, fmt.Errorf("%s is not an ip4 address", val)
+	return "", fmt.Errorf("%s is not an ip4 address", val)
 }
