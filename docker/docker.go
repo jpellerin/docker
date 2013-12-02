@@ -33,7 +33,7 @@ func main() {
 		pidfile              = flag.String("p", "/var/run/docker.pid", "Path to use for daemon PID file")
 		flRoot               = flag.String("g", "/var/lib/docker", "Path to use as the root of the docker runtime")
 		flEnableCors         = flag.Bool("api-enable-cors", false, "Enable CORS headers in the remote API")
-		flDns                = docker.NewListOpts(docker.ValidateHost)
+		flDns                = docker.NewListOpts(docker.ValidateIp4Address)
 		flEnableIptables     = flag.Bool("iptables", true, "Disable docker's addition of iptables rules")
 		flDefaultIp          = flag.String("ip", "0.0.0.0", "Default IP address to use when binding container ports")
 		flInterContainerComm = flag.Bool("icc", true, "Enable inter-container communication")
