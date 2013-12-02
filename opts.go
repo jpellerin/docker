@@ -138,9 +138,9 @@ func ValidateHost(val string) (string, error) {
 
 func ValidateIp4Address(val string) (string, error) {
 	re := regexp.MustCompile(`^(([0-9]+\.){3}([0-9]+))\s*$`)
-	var ns = re.FindSubmatch(val)
+	var ns = re.FindSubmatch([]byte(val))
 	if len(ns) > 0 {
-		return string(ns[1]), null
+		return string(ns[1]), nil
 	}
-	return fmt.Errorf("%s is not an ip4 address", val)
+	return nil, fmt.Errorf("%s is not an ip4 address", val)
 }
