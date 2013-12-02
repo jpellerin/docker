@@ -5,6 +5,7 @@ import (
 	"github.com/dotcloud/docker/utils"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 )
 
@@ -135,7 +136,7 @@ func ValidateHost(val string) (string, error) {
 	return host, nil
 }
 
-func ValidateIp4Address(val string) (String, error) {
+func ValidateIp4Address(val string) (string, error) {
 	re := regexp.MustCompile(`^(([0-9]+\.){3}([0-9]+))\s*$`)
 	var ns = re.FindSubmatch(val)
 	if len(ns) > 0 {
